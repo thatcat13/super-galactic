@@ -26,6 +26,7 @@
     "gulp-util": "^3.0.8",
     "jasmine": "^2.8.0",
     "jasmine-core": "^2.8.0",
+    "jasmine-expect": "^3.8.1",
     "jshint": "^2.9.5",
     "karma": "^2.0.0",
     "karma-browserify": "^5.1.3",

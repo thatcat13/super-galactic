@@ -159,7 +159,7 @@ gulp.task('serve', function(){
     }
   });
   gulp.watch(['js/*.js'], ['jsBuild']);
-  gulp.watch(['bower.json'], ['bowerJS']);
+  gulp.watch(['bower.json'], ['bowerBuild']);
   gulp.watch(['*.html'], ['htmlBuild']);
   gulp.watch("scss/*.scss", ['cssBuild']);
 });
@@ -174,11 +174,7 @@ gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){
 //lists an array of dependency tasks that need to be run whenever any of the js files change; wanna run linter and jsBrowserify and its dependencies; linter can be run at the same time as concat and browserify since they're mutually exclusive
 //once those are complete, use task function to call browserSync.reload()
 
-gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){
-  browserSync.reload();
-});
-
-gulp.task('bowerJS', ['bower'], function(){
+gulp.task('bowerBuild', ['bower'], function(){
   browserSync.reload();
 });
 
@@ -188,12 +184,16 @@ gulp.task('htmlBuild', function(){
 });
 
 //CSS BUILD
+// gulp.task("cssBuild", function() {
+//   return gulp.src(['scss/*.scss'])
+//   .pipe(sourcemaps.init())
+//   .pipe(sass())
+//   .pipe(sourcemaps.write())
+//   .pipe(gulp.dest('./build/css'))
+//   .pipe(browserSync.stream());
+// });
 gulp.task("cssBuild", function() {
-  return gulp.src(['scss/*.scss'])
-  .pipe(sourcemaps.init())
-  .pipe(sass())
-  .pipe(sourcemaps.write())
-  // .pipe(concat('vendor.css'))
+  gulp.src(['css/*.css'])
+  .pipe(concat('vendor.css'))
   .pipe(gulp.dest('./build/css'))
-  .pipe(browserSync.stream());
 });

@@ -38,6 +38,8 @@ var lib = require('bower-files')({
 var browserSync = require('browser-sync').create();
 //create is a function that's part of the browser-sync pkg, used to create our server to deploy optimized versions of dev files
 
+var babelify = require('babelify');
+
 //TASKS--------------------------------------------------------------------------------
 
 //CONCAT TASK
@@ -60,6 +62,9 @@ gulp.task('jsBrowserify', ['concatInterface'], function(){
 //here the browserify function is called and instructs which files to browserify by passing in an object with a key 'entries'; its corresponding value is an array of file names
 //pulling in front-end only, not backend because backend was taken care of by the require keyword in -interface file
 //tmp b/c allConcat.js isn't used in the browser
+  .transform(babelify.configure({
+    presets: ["es2015"]
+  }))
   .bundle()
 //bundle is a process built into browserify pkg
   .pipe(source('app.js'))

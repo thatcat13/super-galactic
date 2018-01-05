@@ -44,7 +44,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var babelify = require('babelify');
 
-
+var moment = require('moment');
 
 
 

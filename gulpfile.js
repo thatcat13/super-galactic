@@ -156,13 +156,13 @@ gulp.task('serve', function(){
     }
   });
   gulp.watch(['js/*.js'], ['jsBuild']);
-  gulp.watch(['bower.json'], ['bowerBuild']);
+  gulp.watch(['bower.json'], ['bowerJS']);
   gulp.watch(['*.html'], ['htmlBuild']);
   gulp.watch("scss/*.scss", ['cssBuild']);
 });
 //calling browserSync.init() and passing in options telling browserSync to launch a local server from the directory currently in; telling it that the entry point (the place to start the app) is index.html
 //watch: files are being watched automatically as soon as we start server; it says to watch all of the files in the dev js folder and whenever they change, run jsBuild
-//watching bower manifest file for changes so that whenever we install or uninstall a frontend dependency our vendor files will be rebuilt and the browser reloaded with the bowerBuild task
+//watching bower manifest file for changes so that whenever we install or uninstall a frontend dependency our vendor files will be rebuilt and the browser reloaded with the bowerJS task
 
 //WATCH TASK
 gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){

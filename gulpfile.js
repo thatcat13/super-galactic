@@ -35,6 +35,8 @@ var lib = require('bower-files')({
 //tells function to run immediately by placing () after the call to require
 //when bower-files function is run it returns a collection of all the files relevant to the dependencies stored in our Bower manifest file bower.json
 
+var browserSync = require('browser-sync').create();
+//create is a function that's part of the browser-sync pkg, used to create our server to deploy optimized versions of dev files
 
 //TASKS--------------------------------------------------------------------------------
 
@@ -135,3 +137,27 @@ gulp.task('bowerCSS', function(){
 
 //bowerJS and bowerCSS combined
 gulp.task('bower', ['bowerJS', 'bowerCSS']);
+
+//SERVE TASK
+gulp.task('serve', function(){
+  browserSync.init({
+    server: {
+      baseDir: "./",
+      index: "index.html"
+    }
+  });
+  gulp.watch(['js/*.js'], ['jsBuild']);
+  gulp.watch(['bower.json'], ['bowerBuild']);
+  gulp.watch(['*.html'], ['htmlBuild']);
+  gulp.watch("scss/*.scss", ['cssBuild']);
+});
+//calling browserSync.init() and passing in options telling browserSync to launch a local server from the directory currently in; telling it that the entry point (the place to start the app) is index.html
+//watch: files are being watched automatically as soon as we start server; it says to watch all of the files in the dev js folder and whenever they change, run jsBuild
+//watching bower manifest file for changes so that whenever we install or uninstall a frontend dependency our vendor files will be rebuilt and the browser reloaded with the bowerBuild task
+
+//WATCH TASK
+gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){
+  browserSync.reload();
+});
+//lists an array of dependency tasks that need to be run whenever any of the js files change; wanna run linter and jsBrowserify and its dependencies; linter can be run at the same time as concat and browserify since they're mutually exclusive
+//once those are complete, use task function to call browserSync.reload()

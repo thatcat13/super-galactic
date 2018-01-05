@@ -44,7 +44,19 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var babelify = require('babelify');
 
+
+
+
+
 //TASKS--------------------------------------------------------------------------------
+
+//LINTING TASK
+gulp.task('jshint', function(){
+  return gulp.src(['js/*.js'])
+  .pipe(jshint())
+  .pipe(jshint.reporter('default'));
+});
+//this will pull in all the js files in js folder, run jshint on them and report back any errors found
 
 //CONCAT TASK
 gulp.task('concatInterface', function(){
@@ -87,44 +99,6 @@ gulp.task('minifyScripts', ['jsBrowserify'], function(){
 });
 //so when minifyScripts task is run, it will run jsBrowserify, which will run concatInterface
 
-//CLEAN TASK
-gulp.task('clean', function(){
-  return del(['build', 'tmp']);
-});
-//pass del function an array of paths to delete and it removes them
-//clean task is called automatically by making it a dependency of the build task
-
-//BUILD TASK
-gulp.task('build', ['clean'], function(){
-  if (buildProduction) {
-    gulp.start('minifyScripts');
-  } else {
-    gulp.start('jsBrowserify')
-  }
-  gulp.start('bower');
-  //bower runs parallel to other tasks since it only deals with 3rd party pkgs installed with bower
-});
-//will make a fresh folder of the newest files to work with
-
-//LINTING TASK
-gulp.task('jshint', function(){
-  return gulp.src(['js/*.js'])
-  .pipe(jshint())
-  .pipe(jshint.reporter('default'));
-});
-//this will pull in all the js files in js folder, run jshint on them and report back any errors found
-
-//CSS BUILD
-gulp.task("cssBuild", function() {
-  gulp.src(['css/*.css'])
-  .pipe(concat('vendor.css'))
-  .pipe(gulp.dest('./build/css'))
-});
-//HTML Build
-gulp.task('htmlBuild', function(){
-  browserSync.reload();
-});
-
 //bowerJS TASK
 gulp.task('bowerJS', function(){
   return gulp.src(lib.ext('js').files)
@@ -144,8 +118,37 @@ gulp.task('bowerCSS', function(){
   .pipe(gulp.dest('./build/css'));
 });
 
+//cssCONCAT TASK
+gulp.task('cssConcat', ['bowerCSS', 'cssBuild'], function(){
+  return gulp.src(['./build/css/vendor.css', './build/css/main.css'])
+  .pipe(concat('build.css'))
+  .pipe(gulp.dest('./build/css'))
+  .pipe(browserSync.stream());
+});
+
+
+
 //bowerJS and bowerCSS combined
 gulp.task('bower', ['bowerJS', 'bowerCSS']);
+
+//CLEAN TASK
+gulp.task('clean', function(){
+  return del(['build', 'tmp']);
+});
+//pass del function an array of paths to delete and it removes them
+//clean task is called automatically by making it a dependency of the build task
+
+//BUILD TASK
+gulp.task('build', ['clean'], function(){
+  if (buildProduction) {
+    gulp.start('minifyScripts');
+  } else {
+    gulp.start('jsBrowserify')
+  }
+  gulp.start('bower');
+  //bower runs parallel to other tasks since it only deals with 3rd party pkgs installed with bower
+});
+//will make a fresh folder of the newest files to work with
 
 //SERVE TASK
 gulp.task('serve', function(){
@@ -170,3 +173,27 @@ gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){
 });
 //lists an array of dependency tasks that need to be run whenever any of the js files change; wanna run linter and jsBrowserify and its dependencies; linter can be run at the same time as concat and browserify since they're mutually exclusive
 //once those are complete, use task function to call browserSync.reload()
+
+gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){
+  browserSync.reload();
+});
+
+gulp.task('bowerJS', ['bower'], function(){
+  browserSync.reload();
+});
+
+//HTML Build
+gulp.task('htmlBuild', function(){
+  browserSync.reload();
+});
+
+//CSS BUILD
+gulp.task("cssBuild", function() {
+  return gulp.src(['scss/*.scss'])
+  .pipe(sourcemaps.init())
+  .pipe(sass())
+  .pipe(sourcemaps.write())
+  // .pipe(concat('vendor.css'))
+  .pipe(gulp.dest('./build/css'))
+  .pipe(browserSync.stream());
+});

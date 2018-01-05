@@ -21,8 +21,22 @@ var buildProduction = utilities.env.production;
 //indicates which environment is being used (dev or production)
 //$ gulp build --production: sets var to true, thus production build
 //$gulp build: sets var to false, thus development build
+var lib = require('bower-files')({
+  "overrides":{
+    "bootstrap" : {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+});
+//tells function to run immediately by placing () after the call to require
+//when bower-files function is run it returns a collection of all the files relevant to the dependencies stored in our Bower manifest file bower.json
 
-//TASKS
+
+//TASKS--------------------------------------------------------------------------------
 
 //CONCAT TASK
 gulp.task('concatInterface', function(){
@@ -76,6 +90,8 @@ gulp.task('build', ['clean'], function(){
   } else {
     gulp.start('jsBrowserify')
   }
+  gulp.start('bower');
+  //bower runs parallel to other tasks since it only deals with 3rd party pkgs installed with bower
 });
 //will make a fresh folder of the newest files to work with
 
@@ -86,3 +102,36 @@ gulp.task('jshint', function(){
   .pipe(jshint.reporter('default'));
 });
 //this will pull in all the js files in js folder, run jshint on them and report back any errors found
+
+//CSS BUILD
+gulp.task("cssBuild", function() {
+  gulp.src(['css/*.css'])
+  .pipe(concat('vendor.css'))
+  .pipe(gulp.dest('./build/css'))
+});
+//HTML Build
+gulp.task('htmlBuild', function(){
+  browserSync.reload();
+});
+
+//bowerJS TASK
+gulp.task('bowerJS', function(){
+  return gulp.src(lib.ext('js').files)
+  .pipe(concat('vendor.min.js'))
+  .pipe(uglify())
+  .pipe(gulp.dest('./build/js'));
+});
+//use gulp.src to pullin all JS files, and output one concat/minified file called vendor.js that we will load into our index.html.
+//filtering out only the .js files by using the ext method build into the bower-files
+// pass into ext ('js') as an argument
+//finally use gulp.dest method to put finished file into build/js directory
+
+//bowerCSS
+gulp.task('bowerCSS', function(){
+  return gulp.src(lib.ext('css').files)
+  .pipe(concat('vendor.css'))
+  .pipe(gulp.dest('./build/css'));
+});
+
+//bowerJS and bowerCSS combined
+gulp.task('bower', ['bowerJS', 'bowerCSS']);

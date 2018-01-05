@@ -38,6 +38,10 @@ var lib = require('bower-files')({
 var browserSync = require('browser-sync').create();
 //create is a function that's part of the browser-sync pkg, used to create our server to deploy optimized versions of dev files
 
+var sass = require('gulp-sass');
+
+var sourcemaps = require('gulp-sourcemaps');
+
 var babelify = require('babelify');
 
 //TASKS--------------------------------------------------------------------------------

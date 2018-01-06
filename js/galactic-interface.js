@@ -12,7 +12,7 @@ $(document).ready(function(){
     const yyyyInput = $('#yyyy').val();
     const newUser = new GalacticAge();
     const userCurrentAge = newUser.calculateCurrentAge(mmInput, ddInput, yyyyInput);
-    console.log(userCurrentAge);
+    console.log(typeof currentAgeConverted);
 
   });//event
 });//document ready

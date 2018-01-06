@@ -1,5 +1,5 @@
 import { GalacticAge } from './../js/super-galactic.js';
-// var GalacticAge = require('./../js/super-galactic.js').galacticModule;
+
 
 //front-end
 $(document).ready(function(){
@@ -7,10 +7,12 @@ $(document).ready(function(){
     event.preventDefault();
     $('#time').text(moment());
     console.log('ive been clicked!');
-    const line1input = $('#mm').val();
-    const line2input = $('#dd').val();
-    const line3input = $('#yyyy').val();
-    console.log(line1input+line2input+line3input);
+    const mmInput = $('#mm').val();
+    const ddInput = $('#dd').val();
+    const yyyyInput = $('#yyyy').val();
+    const newUser = new GalacticAge();
+    const userCurrentAge = newUser.calculateCurrentAge(mmInput, ddInput, yyyyInput);
+    console.log(userCurrentAge);
 
   });//event
 });//document ready

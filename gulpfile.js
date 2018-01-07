@@ -118,6 +118,13 @@ gulp.task('bowerCSS', function(){
   .pipe(gulp.dest('./build/css'));
 });
 
+//CSS BUILD
+gulp.task("cssBuild", function() {
+  gulp.src(['css/*.css'])
+  .pipe(concat('vendor.css'))
+  .pipe(gulp.dest('./build/css'))
+});
+
 //cssCONCAT TASK
 gulp.task('cssConcat', ['bowerCSS', 'cssBuild'], function(){
   return gulp.src(['./build/css/vendor.css', './build/css/main.css'])

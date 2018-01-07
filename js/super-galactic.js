@@ -18,7 +18,6 @@ export class GalacticAge {
     const yearInput = year;
     birthdate.push(monthInput, dayInput, yearInput);
     const currentAge = moment(birthdate, "MM-DD-YYYY").fromNow(true).split(" ")[0];
-    console.log(currentAge);
     return currentAge;
   }
   calculateMercuryAge(age){
@@ -35,25 +34,41 @@ export class GalacticAge {
     return marsAge;
   }
   calculateJupiterAge(age){
-    const jupisterAge = age / 11.86;
+    const jupiterAge = age / 11.86;
     return jupiterAge;
   }
 
 
   calculateMercuryExpectancy(mercuryAge, localAgeExp){
     const mercuryExp = ((localAgeExp / 0.24) - (mercuryAge));
-    return mercuryExp;
+      if (mercuryExp <= 0) {
+        return ("You're already dead on this planet!");
+      } else {
+        return mercuryExp;
+      }
   }
   calculateVenusExpectancy(venusAge, localAgeExp){
-    const venusExp = ((localAgeExp / 0.24) - (venusAge));
-    return venusExp;
+    const venusExp = ((localAgeExp / 0.62) - (venusAge));
+      if (venusExp <= 0) {
+        return ("You're already dead on this planet!");
+      } else {
+        return venusExp;
+      }
   }
   calculateMarsExpectancy(marsAge, localAgeExp){
-    const marsExp = ((localAgeExp / 0.24) - (marsAge));
-    return marsExp;
+    const marsExp = ((localAgeExp / 1.88) - (marsAge));
+    if (marsExp <= 0) {
+      return ("You're already dead on this planet!");
+    } else {
+      return marsExp;
+    }
   }
   calculateJupiterExpectancy(jupiterAge, localAgeExp){
-    const jupiterExp = ((localAgeExp / 0.24) - (jupiterAge));
-    return jupiterExp;
+    const jupiterExp = ((localAgeExp / 11.86) - (jupiterAge));
+    if (jupiterExp <= 0) {
+      return ("You're already dead on this planet!");
+    } else {
+      return jupiterExp;
+    }
   }
 }

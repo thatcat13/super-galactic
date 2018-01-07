@@ -6,7 +6,7 @@
     "cj <thatcat13@gmail.com>"
   ],
   "license": "ISC",
-  "homepage": "",
+  "homepage": "https://github.com/thatcat13/super-galactic",
   "ignore": [
     "**/.*",
     "node_modules",

@@ -17,7 +17,7 @@ export class GalacticAge {
     const dayInput = day;
     const yearInput = year;
     birthdate.push(monthInput, dayInput, yearInput);
-    const currentAge = moment(birthdate, "MM-DD-YYYY").fromNow(true);
+    const currentAge = moment(birthdate, "MM-DD-YYYY").fromNow(true).split(" ")[0];
     console.log(currentAge);
     return currentAge;
   }

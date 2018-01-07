@@ -11,8 +11,8 @@ $(document).ready(function(){
     const ddInput = $('#dd').val();
     const yyyyInput = $('#yyyy').val();
     const newUser = new GalacticAge();
-    const userCurrentAge = newUser.calculateCurrentAge(mmInput, ddInput, yyyyInput);
-    console.log(typeof currentAgeConverted);
+    const userCurrentAge = parseInt(newUser.calculateCurrentAge(mmInput, ddInput, yyyyInput));
+    console.log(typeof userCurrentAge);
 
   });//event
 });//document ready

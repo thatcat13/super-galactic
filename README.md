@@ -35,6 +35,9 @@
 | **How many years left to live on Venus** | Input1: 42.00 earth years | Output: 60.16 Venus years left to live|
 | **How many years left to live on Mars** | Input1: 42.00 earth years | Output: 19.84 Mars years left to live |
 | **How many years left to live on Jupiter** | Input1: 42.00 earth years | Output: 3.15 Jupiter years left to live|
+|
+| **How many years left to live on all planets if old enough to be dead on that planet** | Input1: 83.00 earth years | Output: "You're already dead on this planet!"|
+
 
 
 ## Setup/Installation Requirements

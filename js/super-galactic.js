@@ -2,9 +2,8 @@
 
 
 export class GalacticAge {
-  constructor(currentAge, currentDate) {
-    this.currentAge = currentAge;
-    this.currentDate = currentDate;
+  constructor(thing) {
+    this.thing = thing;
   }
 
   calculateAgeInSeconds(ageInYears){

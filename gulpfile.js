@@ -112,7 +112,7 @@ gulp.task('bowerJS', function(){
 //finally use gulp.dest method to put finished file into build/js directory
 
 //bowerCSS
-gulp.task('bowerCSS', function(){
+gulp.task('bowerCSS', ['cssBuild'], function(){
   return gulp.src(lib.ext('css').files)
   .pipe(concat('vendor.css'))
   .pipe(gulp.dest('./build/css'));
@@ -168,7 +168,7 @@ gulp.task('serve', function(){
   gulp.watch(['js/*.js'], ['jsBuild']);
   gulp.watch(['bower.json'], ['bowerBuild']);
   gulp.watch(['*.html'], ['htmlBuild']);
-  gulp.watch("scss/*.scss", ['cssBuild']);
+  gulp.watch("css/*.css", ['cssBuild']);
 });
 //calling browserSync.init() and passing in options telling browserSync to launch a local server from the directory currently in; telling it that the entry point (the place to start the app) is index.html
 //watch: files are being watched automatically as soon as we start server; it says to watch all of the files in the dev js folder and whenever they change, run jsBuild

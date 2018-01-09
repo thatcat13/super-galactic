@@ -2,7 +2,7 @@
 
 
 export class GalacticAge {
-  constructor(mm, dd, yyyy, currentAge, mercuryAge, venusAge, marsAge, jupiterAge, mercuryExp, venusExp, marsExp, jupiterExp) {
+  constructor(mm, dd, yyyy, currentAge, mercuryAge, venusAge, marsAge, jupiterAge) {
     this.mm = mm;
     this.dd = dd;
     this.yyyy = yyyy;

@@ -111,6 +111,13 @@ gulp.task('bowerJS', function(){
 // pass into ext ('js') as an argument
 //finally use gulp.dest method to put finished file into build/js directory
 
+//CSS BUILD
+gulp.task("cssBuild", function() {
+  gulp.src(['css/*.css'])
+  .pipe(concat('main.css'))
+  .pipe(gulp.dest('./build/css'))
+});
+
 //bowerCSS
 gulp.task('bowerCSS', ['cssBuild'], function(){
   return gulp.src(lib.ext('css').files)
@@ -118,12 +125,6 @@ gulp.task('bowerCSS', ['cssBuild'], function(){
   .pipe(gulp.dest('./build/css'));
 });
 
-//CSS BUILD
-gulp.task("cssBuild", function() {
-  gulp.src(['css/*.css'])
-  .pipe(concat('vendor.css'))
-  .pipe(gulp.dest('./build/css'))
-});
 
 //cssCONCAT TASK
 gulp.task('cssConcat', ['bowerCSS', 'cssBuild'], function(){
@@ -188,19 +189,4 @@ gulp.task('bowerBuild', ['bower'], function(){
 //HTML Build
 gulp.task('htmlBuild', function(){
   browserSync.reload();
-});
-
-//CSS BUILD
-// gulp.task("cssBuild", function() {
-//   return gulp.src(['scss/*.scss'])
-//   .pipe(sourcemaps.init())
-//   .pipe(sass())
-//   .pipe(sourcemaps.write())
-//   .pipe(gulp.dest('./build/css'))
-//   .pipe(browserSync.stream());
-// });
-gulp.task("cssBuild", function() {
-  gulp.src(['css/*.css'])
-  .pipe(concat('vendor.css'))
-  .pipe(gulp.dest('./build/css'))
 });

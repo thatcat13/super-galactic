@@ -2,8 +2,14 @@
 
 
 export class GalacticAge {
-  constructor(thing) {
-    this.thing = thing;
+  constructor(mm, dd, yyyy, currentAge, mercuryAge, venusAge, marsAge, jupiterAge, mercuryExp, venusExp, marsExp, jupiterExp) {
+    this.mm = mm;
+    this.dd = dd;
+    this.yyyy = yyyy;
+    this.currentAge = currentAge;
+    this.mercuryAge = mercuryAge;
+    this.venusAge = venusAge;
+    this.marsAge = marsAge;
   }
 
   calculateAgeInSeconds(ageInYears){
@@ -12,62 +18,67 @@ export class GalacticAge {
 
   calculateCurrentAge(month, day, year){
     const birthdate = [];
-    const monthInput = month;
-    const dayInput = day;
-    const yearInput = year;
+    const monthInput = this.mm;
+    const dayInput = this.dd;
+    const yearInput = this.yyyy;
     birthdate.push(monthInput, dayInput, yearInput);
     const currentAge = moment(birthdate, "MM-DD-YYYY").fromNow(true).split(" ")[0];
-    return currentAge;
+    this.currentAge = currentAge;
+    return this.currentAge;
   }
   calculateMercuryAge(age){
-    const mercuryAge = age / 0.24;
-    return mercuryAge;
+    const mercuryAge = this.currentAge / 0.24;
+    this.mercuryAge = mercuryAge;
+    return mercuryAge.toFixed(2);
 
   }
   calculateVenusAge(age){
-    const venusAge = age / 0.62;
-    return venusAge;
+    const venusAge = this.currentAge / 0.62;
+    this.venusAge = venusAge;
+    return venusAge.toFixed(2);
   }
   calculateMarsAge(age){
-    const marsAge = age / 1.88;
-    return marsAge;
+    const marsAge = this.currentAge / 1.88;
+    this.marsAge = marsAge;
+    return marsAge.toFixed(2);
   }
   calculateJupiterAge(age){
-    const jupiterAge = age / 11.86;
-    return jupiterAge;
+    const jupiterAge = this.currentAge / 11.86;
+    this.jupiterAge = jupiterAge;
+    return jupiterAge.toFixed(2);
   }
 
 
   calculateMercuryExpectancy(mercuryAge, localAgeExp){
-    const mercuryExp = ((localAgeExp / 0.24) - (mercuryAge));
+    const mercuryExp = ((localAgeExp / 0.24) - (this.mercuryAge));
       if (mercuryExp <= 0) {
         return ("You're already dead on this planet!");
       } else {
-        return mercuryExp;
+        return mercuryExp.toFixed(2);
       }
   }
   calculateVenusExpectancy(venusAge, localAgeExp){
-    const venusExp = ((localAgeExp / 0.62) - (venusAge));
+    const venusExp = ((localAgeExp / 0.62) - (this.venusAge));
       if (venusExp <= 0) {
         return ("You're already dead on this planet!");
       } else {
-        return venusExp;
+        return venusExp.toFixed(2);
       }
   }
   calculateMarsExpectancy(marsAge, localAgeExp){
-    const marsExp = ((localAgeExp / 1.88) - (marsAge));
+    const marsExp = ((localAgeExp / 1.88) - (this.marsAge));
     if (marsExp <= 0) {
       return ("You're already dead on this planet!");
     } else {
-      return marsExp;
+      return marsExp.toFixed(2);
     }
   }
   calculateJupiterExpectancy(jupiterAge, localAgeExp){
-    const jupiterExp = ((localAgeExp / 11.86) - (jupiterAge));
+    const jupiterExp = ((localAgeExp / 11.86) - (this.jupiterAge));
     if (jupiterExp <= 0) {
       return ("You're already dead on this planet!");
     } else {
-      return jupiterExp;
+      return jupiterExp.toFixed(2);
     }
   }
 }

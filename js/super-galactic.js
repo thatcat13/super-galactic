@@ -1,51 +1,48 @@
 
-
+import moment from 'moment';
 
 export class GalacticAge {
-  constructor(mm, dd, yyyy, currentAge, mercuryAge, venusAge, marsAge, jupiterAge) {
+  constructor(mm, dd, yyyy) {
     this.mm = mm;
     this.dd = dd;
     this.yyyy = yyyy;
-    this.currentAge = currentAge;
-    this.mercuryAge = mercuryAge;
-    this.venusAge = venusAge;
-    this.marsAge = marsAge;
+    this.currentAge = this.calculateCurrentAge();
+    this.mercuryAge = this.calculateMercuryAge();
+    this.venusAge = this.calculateVenusAge();
+    this.marsAge = this.calculateJupiterAge();
   }
 
   calculateAgeInSeconds(ageInYears){
     return (ageInYears * 31536000);
   }
 
-  calculateCurrentAge(month, day, year){
+  calculateCurrentAge(){
     const birthdate = [];
-    const monthInput = this.mm;
-    const dayInput = this.dd;
-    const yearInput = this.yyyy;
-    birthdate.push(monthInput, dayInput, yearInput);
+    birthdate.push(this.mm, this.dd, this.yyyy);
     const currentAge = moment(birthdate, "MM-DD-YYYY").fromNow(true).split(" ")[0];
-    this.currentAge = currentAge;
-    return this.currentAge;
+    return currentAge;
   }
-  calculateMercuryAge(age){
-    const mercuryAge = this.currentAge / 0.24;
-    this.mercuryAge = mercuryAge;
-    return mercuryAge.toFixed(2);
 
+  calculateMercuryAge(){
+    const mercuryAge = this.currentAge / 0.24;
+    this.mercuryAge = Math.floor(mercuryAge);
+    return mercuryAge;
   }
-  calculateVenusAge(age){
+
+  calculateVenusAge(){
     const venusAge = this.currentAge / 0.62;
-    this.venusAge = venusAge;
-    return venusAge.toFixed(2);
+    this.venusAge = Math.floor(venusAge);
+    return venusAge;
   }
-  calculateMarsAge(age){
+  calculateMarsAge(){
     const marsAge = this.currentAge / 1.88;
-    this.marsAge = marsAge;
-    return marsAge.toFixed(2);
+    this.marsAge = Math.floor(marsAge);
+    return marsAge;
   }
-  calculateJupiterAge(age){
+  calculateJupiterAge(){
     const jupiterAge = this.currentAge / 11.86;
-    this.jupiterAge = jupiterAge;
-    return jupiterAge.toFixed(2);
+    this.jupiterAge = Math.floor(jupiterAge);
+    return jupiterAge;
   }
 
 

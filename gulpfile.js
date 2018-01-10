@@ -99,6 +99,9 @@ gulp.task('minifyScripts', ['jsBrowserify'], function(){
 });
 //so when minifyScripts task is run, it will run jsBrowserify, which will run concatInterface
 
+//bowerJS and bowerCSS combined
+gulp.task('bower', ['bowerJS', 'cssConcat']);
+
 //bowerJS TASK
 gulp.task('bowerJS', function(){
   return gulp.src(lib.ext('js').files)
@@ -111,15 +114,9 @@ gulp.task('bowerJS', function(){
 // pass into ext ('js') as an argument
 //finally use gulp.dest method to put finished file into build/js directory
 
-//CSS BUILD
-gulp.task("cssBuild", function() {
-  gulp.src(['css/*.css'])
-  .pipe(concat('main.css'))
-  .pipe(gulp.dest('./build/css'))
-});
 
 //bowerCSS
-gulp.task('bowerCSS', ['cssBuild'], function(){
+gulp.task('bowerCSS', function(){
   return gulp.src(lib.ext('css').files)
   .pipe(concat('vendor.css'))
   .pipe(gulp.dest('./build/css'));
@@ -134,10 +131,13 @@ gulp.task('cssConcat', ['bowerCSS', 'cssBuild'], function(){
   .pipe(browserSync.stream());
 });
 
+//CSS BUILD
+gulp.task("cssBuild", function() {
+  gulp.src('css/main.css')
+  .pipe(gulp.dest('./build/css'))
+});
 
 
-//bowerJS and bowerCSS combined
-gulp.task('bower', ['bowerJS', 'bowerCSS']);
 
 //CLEAN TASK
 gulp.task('clean', function(){

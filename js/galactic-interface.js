@@ -12,19 +12,20 @@ $(document).ready(function(){
     const newUser = new GalacticAge(mmInput, ddInput, yyyyInput, userCountry);
     console.log(newUser);
     const userCurrentAge = parseFloat(newUser.calculateCurrentAge(mmInput, ddInput, yyyyInput));
+    console.log(userCurrentAge);
     $('#current').text(userCurrentAge);
 
 
-    $('#mercury-years').text(newUser.calculateMercuryAge(userCurrentAge));
+    $('#mercury-years').text(newUser.mercuryAge);
     $('#mercury-expectancy').text(newUser.calculateMercuryExpectancy(newUser.mercuryAge, userCountry));
 
-    $('#venus-years').text(newUser.calculateVenusAge(userCurrentAge));
+    $('#venus-years').text(newUser.venusAge);
     $('#venus-expectancy').text(newUser.calculateVenusExpectancy(newUser.venusAge, userCountry));
 
-    $('#mars-years').text(newUser.calculateMarsAge(userCurrentAge));
+    $('#mars-years').text(newUser.marsAge);
     $('#mars-expectancy').text(newUser.calculateMarsExpectancy(newUser.marsAge, userCountry));
 
-    $('#jupiter-years').text(newUser.calculateJupiterAge(userCurrentAge));
+    $('#jupiter-years').text(newUser.jupiterAge);
     $('#jupiter-expectancy').text(newUser.calculateJupiterExpectancy(newUser.jupiterAge, userCountry));
   });//event
 });//document ready

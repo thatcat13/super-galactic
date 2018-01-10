@@ -9,7 +9,7 @@ export class GalacticAge {
     this.currentAge = this.calculateCurrentAge();
     this.mercuryAge = this.calculateMercuryAge();
     this.venusAge = this.calculateVenusAge();
-    this.marsAge = this.calculateJupiterAge();
+    this.jupiterAge = this.calculateJupiterAge();
   }
 
   calculateAgeInSeconds(ageInYears){
@@ -25,24 +25,20 @@ export class GalacticAge {
 
   calculateMercuryAge(){
     const mercuryAge = this.currentAge / 0.24;
-    this.mercuryAge = Math.floor(mercuryAge);
-    return mercuryAge;
+    return mercuryAge.toFixed(2);
   }
 
   calculateVenusAge(){
     const venusAge = this.currentAge / 0.62;
-    this.venusAge = Math.floor(venusAge);
-    return venusAge;
+    return venusAge.toFixed(2);
   }
   calculateMarsAge(){
     const marsAge = this.currentAge / 1.88;
-    this.marsAge = Math.floor(marsAge);
-    return marsAge;
+    return marsAge.toFixed(2);
   }
   calculateJupiterAge(){
     const jupiterAge = this.currentAge / 11.86;
-    this.jupiterAge = Math.floor(jupiterAge);
-    return jupiterAge;
+    return jupiterAge.toFixed(2);
   }
 
 

@@ -9,30 +9,29 @@
     <script type="text/javascript" src="build/js/app.js"></script>
   </head>
   <body>
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <p class="card-text">Super-Galactic Planetary</p>
-      </div>
+    <div class="jumbotron">
+      <h3 class="card-text">Super-Galactic Planetary</h3>
       <img class="card-img-top" src="img/intergalactic.gif" alt="Card image cap">
     </div><!--card-->
 
-
-    <h3>Enter your birthdate below:</h3>
-    <form id="super-galactic-form">
-      <div class="form-group">
-        <label for="mm">MM</label>
-        <input id="mm" type="number">
-      </div>
-      <div class="form-group">
-        <label for="dd">DD</label>
-        <input id="dd" type="number">
-      </div>
-      <div class="form-group">
-        <label for="yyyy">YYYY</label>
-        <input id="yyyy" type="number">
-      </div>
-      <div class="form-group">
-          <label for="countries">Choose your country:</label>
+    <div class="main1">
+      <h2>Nifty Planetary Age Calculator</h2>
+      <h3>Enter your birthdate below:</h3>
+      <form id="super-galactic-form">
+        <div class="form-group">
+          <label for="mm">MM</label>
+          <input id="mm" type="number">
+        </div>
+        <div class="form-group">
+          <label for="dd">DD</label>
+          <input id="dd" type="number">
+        </div>
+        <div class="form-group">
+          <label for="yyyy">YYYY</label>
+          <input id="yyyy" type="number">
+        </div>
+        <div class="form-group">
+          <label for="countries">Where do you live?</label>
           <select multiple class="form-control" id="countries">
             <option value="79.3">United States</option>
             <option value="76.1">China</option>
@@ -41,49 +40,50 @@
             <option value="82.7">Iceland</option>
           </select>
         </div>
-      <div class="form-group">
-        <button id="calculate" type="submit">Calculate</button>
+        <div class="form-group">
+          <button id="calculate" type="submit">Calculate!</button>
+        </div>
+      </form>
+    </div><!--main1-->
+
+    <div class="main2">
+      <h2>Current age:<span id="current"></span></h2>
+      <h2>Behold your intergalactic age!</h2>
+      <div id="mercury">
+        <h2>Mercury</h2>
+        <img src="#" alt="">
+        <label for="mercury-years">Mercury Years:</label>
+        <div id="mercury-years" type="number"></div>
+        <label for="mercury-expectancy">Years left to live on Mercury:</label>
+        <div id="mercury-expectancy" type="number"></div>
       </div>
-    </form>
-    <h2>Current age:<span id="current"></span></h2>
-    <h2>How old you are on other planets:</h2>
-    <div id="mercury">
-      <h2>Mercury</h2>
-      <img src="#" alt="">
-      <label for="mercury-years">Mercury Years:</label>
-      <div id="mercury-years" type="number"></div>
-      <label for="mercury-expectancy">Years left to live on Mercury:</label>
-      <div id="mercury-expectancy" type="number"></div>
-    </div>
 
-    <div id="venus">
-      <h2>Venus</h2>
-      <img src="#" alt="">
-      <label for="venus-years">Venus Years:</label>
-      <div id="venus-years" type="number"></div>
-      <label for="venus-expectancy">Years left to live on Venus:</label>
-      <div id="venus-expectancy" type="number"></div>
-    </div>
+      <div id="venus">
+        <h2>Venus</h2>
+        <img src="#" alt="">
+        <label for="venus-years">Venus Years:</label>
+        <div id="venus-years" type="number"></div>
+        <label for="venus-expectancy">Years left to live on Venus:</label>
+        <div id="venus-expectancy" type="number"></div>
+      </div>
 
-    <div id="mars">
-      <h2>Mars</h2>
-      <img src="#" alt="">
-      <label for="mars-years">Mars Years:</label>
-      <div id="mars-years" type="number"></div>
-      <label for="mars-expectancy">Years left to live on Mars:</label>
-      <div id="mars-expectancy" type="number"></div>
-    </div>
+      <div id="mars">
+        <h2>Mars</h2>
+        <img src="#" alt="">
+        <label for="mars-years">Mars Years:</label>
+        <div id="mars-years" type="number"></div>
+        <label for="mars-expectancy">Years left to live on Mars:</label>
+        <div id="mars-expectancy" type="number"></div>
+      </div>
 
-    <div id="jupiter">
-      <h2>Jupiter</h2>
-      <img src="#" alt="">
-      <label for="jupiter-years">Jupiter Years:</label>
-      <div id="jupiter-years" type="number"></div>
-      <label for="jupiter-expectancy">Years left to live on Jupiter:</label>
-      <div id="jupiter-expectancy" type="number"></div>
-    </div>
-
-
-
+      <div id="jupiter">
+        <h2>Jupiter</h2>
+        <img src="#" alt="">
+        <label for="jupiter-years">Jupiter Years:</label>
+        <div id="jupiter-years" type="number"></div>
+        <label for="jupiter-expectancy">Years left to live on Jupiter:</label>
+        <div id="jupiter-expectancy" type="number"></div>
+      </div>
+    </div><!--main2-->
   </body>
 </html>
